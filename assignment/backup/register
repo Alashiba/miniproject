@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<?php
+include("connection.php");
+
+if(isset($_POST['submit'])) {
+	
+	$email = $_POST['email'];  // Corrected variable name
+	$user = $_POST['username'];  // Corrected variable name
+	$pass = $_POST['password'];  // Corrected variable name
+
+	if(empty($email) || empty($user) || empty($pass)) {  // Corrected variable names in the condition
+		echo "All fields should be filled. Either one or many fields are empty.";
+		echo "<br/>";
+		echo "<a href='register.php'>Go back</a>";
+	} else {
+		mysqli_query($mysqli, "INSERT INTO User(Username, Email, Password) VALUES('$user', '$email', md5('$pass'))")
+			or die("Could not execute the insert query.");
+			
+		echo "Registration successfully";
+		echo "<br/>";
+		echo "<a href='login.php'>Login</a>";
+	}
+} else {
+?>
+    <div class="container">
+        <div class="left-side">
+            <h1>Hi there!</h1>
+            <p>Welcome to our Website</p>
+            <form name="form1" method="post" action="">
+                <div class="form-group">
+                    <label for="username">Username</label>
+                    <input type="text" id="username" name="username">
+                </div>
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="text" id="email" name="email">
+                </div>
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" name="password">
+                </div>
+                <div class="form-group">
+                    <input type="submit" name="submit" value="Log In">
+                </div>
+            </form>
+            <p>Already have an account? <a href="login.php">Login</a></p>
+        </div>
+        <div class="right-side">
+            <img src="images/food1.jpeg" alt="food1" class="background-image">
+            <div class="overlay-text">
+                <h2>#1 Recipe Sharing Platform</h2>
+                <p>Cook, Share, Inspire: Your Culinary Journey Starts Here</p>
+            </div>
+        </div>
+    </div>
+<?php
+}
+?>
+</body>
+</html>
+
+
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #f4f4f4;
+}
+
+.container {
+    display: flex;
+    width: 80%;
+    height: 80%;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.left-side {
+    background: #ffffff;
+    padding: 40px;
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.left-side h1 {
+    font-size: 36px;
+    margin-bottom: 10px;
+}
+
+.left-side p {
+    margin: 10px 0;
+}
+
+.google-login {
+    background-color: #4285f4;
+    color: white;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    width: 100%;
+    margin-bottom: 10px;
+}
+
+.google-login:hover {
+    background-color: #357ae8;
+}
+
+form p {
+    margin: 0;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 15px;
+}
+
+.form-group label {
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+.form-group input[type="text"], 
+.form-group input[type="password"] {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    width: 100%;
+}
+
+.form-group input[type="submit"] {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    padding: 15px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    border-radius: 4px;
+    cursor: pointer;
+    width: 100%;
+}
+
+.form-group input[type="submit"]:hover {
+    background-color: #45a049;
+}
+
+.right-side {
+    background-color: #000;
+    color: white;
+    width: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.background-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.overlay-text {
+    position: absolute;
+    text-align: center;
+}
+
+.overlay-text h2 {
+    font-size: 24px;
+}
+
+.overlay-text p {
+    font-size: 16px;
+    margin: 10px 0;
+}
