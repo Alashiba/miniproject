@@ -1,82 +1,69 @@
-/* Reset */
-* {
+/* Custom styles */
+body {
     margin: 0;
     padding: 0;
-    box-sizing: border-box;
+    font-family: Arial, sans-serif;
 }
 
-/* Body Styling */
-body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background-color: #f4f4f4;
-    color: #333;
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh;
-}
-
-/* Container for Padding */
-.container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 20px;
-}
-
-/* Header Styling */
 header {
-    background-color: #007BFF;
-    color: white;
-    padding: 20px 0;
-    text-align: center;
-}
-
-/* Main Content Styling */
-main {
-    flex: 1;
+    position: absolute; /* Ensure it doesn't interfere with the main content flow */
+    width: 100%;
+    height: 100vh; /* Full viewport height */
+    background-image: url('images/food3.jpeg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
     display: flex;
-    justify-content: center;
     align-items: center;
-    padding: 20px;
-    background-color: #ffffff;
-    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    justify-content: center;
+    color: #fff;
+    z-index: 1; /* Positioned below main content */
 }
 
-main p {
-    font-size: 18px;
-    margin-bottom: 20px;
+.header-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.4); /* Semi-transparent overlay */
+    z-index: 2; /* Positioned above the image but below content */
 }
 
-/* Button Styling */
-.button {
-    background-color: #007BFF;
-    color: white;
-    padding: 10px 20px;
-    text-decoration: none;
-    border-radius: 5px;
-    margin: 5px;
-    transition: background-color 0.3s ease;
-    display: inline-block;
-}
-
-.button:hover {
-    background-color: #0056b3;
-}
-
-/* Logout Button */
-.logout {
-    background-color: #FF4136;
-}
-
-.logout:hover {
-    background-color: #e0362c;
-}
-
-/* Footer Styling */
-footer {
-    background-color: #333;
-    color: white;
+.header-content {
+    position: relative;
+    z-index: 3; /* Positioned above the overlay */
     text-align: center;
+}
+
+#header h1 {
+    margin: 0;
+    padding: 20px;
+    background-color: rgba(52, 58, 64, 0.7); /* Semi-transparent background for text readability */
+    border-radius: 5px;
+}
+
+main {
+    position: relative; /* Ensures content is positioned on top of the header */
+    z-index: 2; /* Positioned above the header */
+    padding-top: 100px; /* Add padding to prevent overlap with header */
+}
+
+#footer {
+    background-color: #343a40;
+    color: #fff;
     padding: 10px 0;
-    margin-top: auto;
-    box-shadow: 0px -2px 5px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    z-index: 3; /* Ensure the footer is on top */
+}
+
+.logout {
+    color: #fff !important;
+}
+
+.button {
+    margin: 10px 5px;
 }
